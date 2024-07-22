@@ -7,14 +7,6 @@
         while (true)
         {
             gourmetGameService.PlayGame();
-
-            Console.WriteLine("Quer jogar novamente? (sim/não)");
-            var playAgain = Console.ReadLine()?.ToLower();
-
-            if (playAgain != "sim")
-            {
-                break;
-            }
         }
     }
 }
