@@ -49,6 +49,11 @@
         Console.WriteLine($"\n{newDishName} é ______ mas bolo de chocolate não.");
         var newDishCategory = Console.ReadLine();
 
-        _dishes.Add(new GourmetDish(newDishName,newDishCategory));
+        AddNewGourmetDish(newDishName,newDishCategory);
+    }
+
+    private void AddNewGourmetDish(string name, string category)
+    {
+        _dishes.Add(new GourmetDish(name, category));
     }
 }
