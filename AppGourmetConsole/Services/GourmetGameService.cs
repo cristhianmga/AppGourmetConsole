@@ -56,6 +56,10 @@ public class GourmetGameService : IGourmetGameService
                 if(_dishes.Any(x => x.UpperCategoria.Nome == categoria.Nome))
                 {
                     VerificaSubCategoria(categoria.Nome);
+                    while (_dishes.Any(x => x.UpperCategoria.Nome == categoriaSubSelecionada))
+                    {
+                        VerificaSubCategoria(categoriaSubSelecionada);
+                    }
                     VerificaPrato(categoriaSubSelecionada);
                 }
                 else
@@ -67,6 +71,7 @@ public class GourmetGameService : IGourmetGameService
 
             if (answer == "sim")
             {
+                ResetVariaveis();
                 Console.WriteLine("\nAcertei de novo!");
                 return;
             }
@@ -78,6 +83,7 @@ public class GourmetGameService : IGourmetGameService
             var answerBolo = Console.ReadLine()?.ToLower();
             if (answerBolo == "sim")
             {
+                ResetVariaveis();
                 Console.WriteLine("\nAcertei de novo!");
                 return;
             }
@@ -110,7 +116,7 @@ public class GourmetGameService : IGourmetGameService
 
             AddNewGourmetDish(null, newDishCategory, newDishName);
         }
-
+        ResetVariaveis();
         return;
     }
 
@@ -120,7 +126,7 @@ public class GourmetGameService : IGourmetGameService
         var novaCategoria = new Categoria(categoriaNome);
         if (categoriaUpper == null)
         {
-            var categoriaTopo = _categorias.FirstOrDefault(x => x.Nome.ToLower() == "Topo");
+            var categoriaTopo = _categorias.FirstOrDefault(x => x.Nome.ToLower() == "topo");
             _dishes.Add(new GourmetDish(novoprato, categoriaTopo, novaCategoria));
         }
         else
@@ -158,5 +164,14 @@ public class GourmetGameService : IGourmetGameService
             }
         }
 
+    }
+    private void ResetVariaveis()
+    {
+        answer = "não";
+        answerCategoria = "não";
+        answerSubCategoria = "não";
+        categoriaUpperSelecionada = string.Empty;
+        categoriaSubSelecionada = string.Empty;
+        newDishCategory = string.Empty;
     }
 }
