@@ -1,11 +1,15 @@
-﻿public class GourmetDish
-{
-    public string Name { get; set; }
-    public string Category { get; set; }
+﻿using AppGourmetConsole.Models;
 
-    public GourmetDish(string name, string category)
+public class GourmetDish
+{
+    public Prato Prato { get; set; }
+    public Categoria Categoria { get; set; }
+    public Categoria UpperCategoria { get; set; }
+
+    public GourmetDish(Prato prato, Categoria categoriaUpper, Categoria categoria)
     {
-        Name = name;
-        Category = category;
+        Prato = prato;
+        Categoria = categoria;
+        UpperCategoria = categoriaUpper;
     }
 }
